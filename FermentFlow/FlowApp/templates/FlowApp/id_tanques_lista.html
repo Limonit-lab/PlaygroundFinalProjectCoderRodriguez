@@ -1,0 +1,33 @@
+{% extends "FlowApp/base.html" %}
+{% load static %}
+{% block body %}
+<h1>Listado de Id_Tanques</h1>
+
+<a href={% url 'NuevoIdTanque' %}>Nuevo IdTanque</a>
+<form action="" method="GET">
+    {% csrf_token %}
+    {{formulario.as_p}}
+    <input type="submit" value="Buscar">
+</form>
+{% if id_tanques %}
+{% for id_tanque in id_tanque %}
+<li>Nombre: {{id_tanques.id_tanque}}
+    <p>
+        <a href="{% url 'DetalleIdTanque' id_tanque.pk %}">Ver</a>
+        {% if user.is_authenticated %}
+        |
+        <a href="{% url 'EditarIdTanque' id_tanque.pk %}">Editar</a>
+        {% if user.is_superuser %}
+        |
+        <a href="{% url 'BorrarIdTanque' id_tanque.pk %}">Borrar</a>
+        {% endif %}
+        {% endif %}
+        
+    </p>
+</li>
+
+{% endfor %}
+{% else %}
+<p>No se encontraron resultados.</p>
+{% endif %}
+{% endblock body %}
