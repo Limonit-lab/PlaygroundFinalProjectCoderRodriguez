@@ -41,7 +41,6 @@ def register(request):
             form = forms.Form_Registro()     
       return render(request,"FlowApp/register.html" ,  {"form":form})
   
-@login_required
 
 def editarPerfil(request):
     usuario = request.user
@@ -58,10 +57,10 @@ def editarPerfil(request):
             return render(request, "FlowApp/inicio.html")
     else:
         miFormulario = forms.UserEditForm(instance=request.user)
-    return render(request, "FlowApp/editar_perfil.html", {"miFormulario": miFormulario, "usuario": usuario})
+    return render(request, "FlowApp/editarperfil.html", {"miFormulario": miFormulario, "usuario": usuario})
 
 class CambiarClave(LoginRequiredMixin, PasswordChangeView):
-    template_name = 'FlowApp/cambiar_clave.html'
+    template_name = 'FlowApp/cambiarclave.html'
     success_url = reverse_lazy('EditarPerfil')
 
 def id_tanques(request):
@@ -85,17 +84,19 @@ class Id_TanquesDetailView(DetailView):
     model = models.Id_Tanques
     template_name = "FlowApp/id_tanques_detalle.html" 
 
+
 class Id_TanquesCreateView(CreateView):
     model = models.Id_Tanques
     template_name = "FlowApp/id_tanques_crear.html"
     success_url = reverse_lazy('ListaId_Tanques')
     fields = ['id_tanque']   
-    
+   
+ 
 class Id_TanquesUpdateView(UpdateView):
     model = models.Id_Tanques
     template_name = "FlowApp/id_tanques_editar.html"
     success_url = reverse_lazy('ListaId_Tanques')
-    fields = ['id_tanque']   
+    fields = ['id_tanque']      
 
 class Id_TanquesDeleteView(DeleteView):
     model = models.Id_Tanques    
@@ -138,14 +139,14 @@ class TanquesCreateView(CreateView):
     model = models.Tanques
     template_name = "FlowApp/tanques_crear.html"
     success_url = reverse_lazy('ListaTanques')
-    fields = ["id_tanque","fecha", "variedad", "t", "brix", "ph", "cliente", "enologo", "observaciones"]
-            
+    fields = ["id_tanque","fecha", "variedad", "t", "brix", "ph", "cliente", "enologo", "observaciones"]         
     
 class TanquesUpdateView(UpdateView):
     model = models.Tanques
     template_name = "FlowApp/tanques_editar.html"
     success_url = reverse_lazy('ListaTanques')
     fields = ["id_tanque","fecha", "variedad", "t", "brix", "ph", "cliente", "enologo", "observaciones"]   
+
 
 class TanquesDeleteView(DeleteView):
     model = models.Tanques    
@@ -214,21 +215,26 @@ class ClientesListView(ListView):
     context_object_name = "clientes"
     template_name = "FlowApp/clientes_lista.html"
 
+
 class ClientesDetailView(DetailView):
     model = models.Clientes
     template_name = "FlowApp/clientes_detalle.html" 
+
+
 
 class ClientesCreateView(CreateView):
     model = models.Clientes
     template_name = "FlowApp/clientes_crear.html"
     success_url = reverse_lazy('ListaClientes')
     fields = ['cliente', 'contacto']   
+ 
     
 class ClientesUpdateView(UpdateView):
     model = models.Clientes
     template_name = "FlowApp/clientes_editar.html"
     success_url = reverse_lazy('ListaClientes')
     fields = ['cliente', 'contacto']   
+
 
 class ClientesDeleteView(DeleteView):
     model = models.Clientes    
@@ -260,21 +266,25 @@ class EnologosListView(ListView):
     context_object_name = "enologos"
     template_name = "FlowApp/enologos_lista.html"
 
+
 class EnologosDetailView(DetailView):
     model = models.Enologos
     template_name = "FlowApp/enologos_detalle.html" 
+
 
 class EnologosCreateView(CreateView):
     model = models.Enologos
     template_name = "FlowApp/enologos_crear.html"
     success_url = reverse_lazy('ListaEnologos')
     fields = ['nombre', 'apellido', 'email', 'telefono', 'puesto', 'tipo_contrato']  
+       
     
 class EnologosUpdateView(UpdateView):
     model = models.Enologos
     template_name = "FlowApp/enologos_editar.html"
     success_url = reverse_lazy('ListaEnologos')
     fields = ['nombre', 'apellido', 'email', 'telefono', 'puesto', 'tipo_contrato']  
+
 
 class EnologosDeleteView(DeleteView):
     model = models.Enologos    

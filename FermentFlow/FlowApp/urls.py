@@ -8,6 +8,7 @@ urlpatterns = [
     path('register', views.register, name="Register"),
     path('logout', LogoutView.as_view(template_name='FlowApp/logout.html', ), name="Logout"),
     path('editarPerfil', views.editarPerfil, name="EditarPerfil"),
+    path('cambiarclave', views.CambiarClave.as_view(), name="CambiarClave"),
     path('id_tanques', views.id_tanques, name="Id_Tanques"),
     path('tanques', views.tanques, name="Tanques"),
     path('clientes', views.clientes, name="Clientes"),
