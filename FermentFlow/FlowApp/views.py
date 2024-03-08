@@ -76,7 +76,6 @@ def id_tanques(request):
         formulario = forms.Form_Id_Tanques()
     return render(request, "FlowApp/id_tanques.html", {"formulario": formulario})
 
-
 class Id_TanquesListView(ListView):
     model = models.Id_Tanques
     context_object_name = "id_tanques"
@@ -88,20 +87,20 @@ class Id_TanquesDetailView(DetailView):
 
 class Id_TanquesCreateView(CreateView):
     model = models.Id_Tanques
-    template_name = "FlowApp/id_tanque_crear.html"
-    success_url = reverse_lazy('ListaIdTanques')
+    template_name = "FlowApp/id_tanques_crear.html"
+    success_url = reverse_lazy('ListaId_Tanques')
     fields = ['id_tanque']   
     
 class Id_TanquesUpdateView(UpdateView):
     model = models.Id_Tanques
-    template_name = "FlowApp/id_tanque_editar.html"
-    success_url = reverse_lazy('ListaIdTanques')
+    template_name = "FlowApp/id_tanques_editar.html"
+    success_url = reverse_lazy('ListaId_Tanques')
     fields = ['id_tanque']   
 
 class Id_TanquesDeleteView(DeleteView):
     model = models.Id_Tanques    
     template_name = "FlowApp/id_tanques_borrar.html"
-    success_url = reverse_lazy('ListaIdTanques')                                         
+    success_url = reverse_lazy('ListaId_Tanques')                                         
 
 def tanques(request):
     if request.method == 'POST':
@@ -126,18 +125,73 @@ def tanques(request):
     contexto = {"formulario": formulario}
     return render(request, "FlowApp/tanques.html", contexto)
 
+class TanquesListView(ListView):
+    model = models.Tanques
+    context_object_name = "tanques"
+    template_name = "FlowApp/tanques_lista.html"
+
+class TanquesDetailView(DetailView):
+    model = models.Tanques
+    template_name = "FlowApp/tanques_detalle.html" 
+
+class TanquesCreateView(CreateView):
+    model = models.Tanques
+    template_name = "FlowApp/tanques_crear.html"
+    success_url = reverse_lazy('ListaTanques')
+    fields = ["id_tanque","fecha", "variedad", "t", "brix", "ph", "cliente", "enologo", "observaciones"]
+            
+    
+class TanquesUpdateView(UpdateView):
+    model = models.Tanques
+    template_name = "FlowApp/tanques_editar.html"
+    success_url = reverse_lazy('ListaTanques')
+    fields = ["id_tanque","fecha", "variedad", "t", "brix", "ph", "cliente", "enologo", "observaciones"]   
+
+class TanquesDeleteView(DeleteView):
+    model = models.Tanques    
+    template_name = "FlowApp/tanques_borrar.html"
+    success_url = reverse_lazy('ListaTanques')                                         
+
+
 def mostovino(request):
     if request.method == 'POST':
         formulario = forms.Form_MostoVino(request.POST)
         if formulario.is_valid():
             informacion = formulario.cleaned_data
-            mosto_vino = models.MostoVino(variedad=informacion["variedad"])
-            mosto_vino.save()
-            return render(request, 'FlowApp/mosto_vino.html')
+            variedad = models.MostoVino(variedad=informacion["variedad"])
+            variedad.save()
+            return render(request, 'FlowApp/mostovino.html')
     else:
         formulario = forms.Form_MostoVino()
     contexto = {"formulario": formulario}
-    return render(request, "FlowApp/mosto_vino.html", contexto)
+    return render(request, "FlowApp/mostovino.html", contexto)
+
+class MostoVinoListView(ListView):
+    model = models.MostoVino
+    context_object_name = "mostovino"
+    template_name = "FlowApp/mostovino_lista.html"
+
+class MostoVinoDetailView(DetailView):
+    model = models.MostoVino
+    template_name = "FlowApp/mostovino_detalle.html" 
+
+class MostoVinoCreateView(CreateView):
+    model = models.MostoVino
+    template_name = "FlowApp/mostovino_crear.html"
+    success_url = reverse_lazy('ListaMostoVino')
+    fields = ['variedad']   
+    
+class MostoVinoUpdateView(UpdateView):
+    model = models.MostoVino
+    template_name = "FlowApp/mostovino_editar.html"
+    success_url = reverse_lazy('ListaMostoVino')
+    fields = ['variedad']   
+
+class MostoVinoDeleteView(DeleteView):
+    model = models.MostoVino    
+    template_name = "FlowApp/mostovino_borrar.html"
+    success_url = reverse_lazy('ListaMostoVino')                                         
+
 
 def clientes(request):
     if request.method == 'POST':
@@ -154,6 +208,32 @@ def clientes(request):
         formulario = forms.Form_Clientes()
     contexto = {"formulario": formulario}
     return render(request, "FlowApp/clientes.html", contexto)
+
+class ClientesListView(ListView):
+    model = models.Clientes
+    context_object_name = "clientes"
+    template_name = "FlowApp/clientes_lista.html"
+
+class ClientesDetailView(DetailView):
+    model = models.Clientes
+    template_name = "FlowApp/clientes_detalle.html" 
+
+class ClientesCreateView(CreateView):
+    model = models.Clientes
+    template_name = "FlowApp/clientes_crear.html"
+    success_url = reverse_lazy('ListaClientes')
+    fields = ['cliente', 'contacto']   
+    
+class ClientesUpdateView(UpdateView):
+    model = models.Clientes
+    template_name = "FlowApp/clientes_editar.html"
+    success_url = reverse_lazy('ListaClientes')
+    fields = ['cliente', 'contacto']   
+
+class ClientesDeleteView(DeleteView):
+    model = models.Clientes    
+    template_name = "FlowApp/clientes_borrar.html"
+    success_url = reverse_lazy('ListaClientes')    
 
 def enologos(request):
     if request.method == 'POST':
@@ -175,3 +255,28 @@ def enologos(request):
     contexto = {"formulario": formulario}
     return render(request, "FlowApp/enologos.html", contexto)
 
+class EnologosListView(ListView):
+    model = models.Enologos
+    context_object_name = "enologos"
+    template_name = "FlowApp/enologos_lista.html"
+
+class EnologosDetailView(DetailView):
+    model = models.Enologos
+    template_name = "FlowApp/enologos_detalle.html" 
+
+class EnologosCreateView(CreateView):
+    model = models.Enologos
+    template_name = "FlowApp/enologos_crear.html"
+    success_url = reverse_lazy('ListaEnologos')
+    fields = ['nombre', 'apellido', 'email', 'telefono', 'puesto', 'tipo_contrato']  
+    
+class EnologosUpdateView(UpdateView):
+    model = models.Enologos
+    template_name = "FlowApp/enologos_editar.html"
+    success_url = reverse_lazy('ListaEnologos')
+    fields = ['nombre', 'apellido', 'email', 'telefono', 'puesto', 'tipo_contrato']  
+
+class EnologosDeleteView(DeleteView):
+    model = models.Enologos    
+    template_name = "FlowApp/enologos_borrar.html"
+    success_url = reverse_lazy('ListaEnologos')

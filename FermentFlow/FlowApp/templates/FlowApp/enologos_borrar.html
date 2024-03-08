@@ -1,11 +1,11 @@
 {% extends "FlowApp/base.html" %}
 {% load static %}
 {% block body %}
-<h1>Borrar Id_Tanque</h1>
+<h1>Borrar Enologo</h1>
 
 <form action="" method="POST">
     {% csrf_token %}
-    Estas seguro que deseas borrar el tanque {{tanque.id_tanque}}??
+    Estas seguro que deseas borrar al enologo {{enologos.nombre}}  {{enologos.apellido}}??
     <input type="submit" value="Eliminar">
 </form>
 {% endblock body %}

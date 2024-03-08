@@ -1,0 +1,23 @@
+{% extends "FlowApp/base.html" %}
+{% load static %}
+{% block body %}
+<h1>Listado de Clientes</h1>
+
+
+<a href={% url 'NuevoClientes' %}>Nuevo Cliente</a>
+{% for cliente in clientes %}
+    <li>Cliente: {{cliente.cliente}}
+        <p>
+            <a href="{% url 'DetalleClientes' cliente.pk %}">Ver</a>
+            |
+            <a href="{% url 'EditarClientes' cliente.pk %}">Editar</a>
+            |
+            <a href="{% url 'BorrarClientes' cliente.pk %}">Borrar</a>
+
+
+        </p>
+    </li>
+
+
+{% endfor %}
+{% endblock body %}

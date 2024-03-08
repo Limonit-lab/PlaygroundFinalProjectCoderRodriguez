@@ -1,0 +1,23 @@
+{% extends "FlowApp/base.html" %}
+{% load static %}
+{% block body %}
+<h1>Listado de Tanques</h1>
+
+
+<a href={% url 'NuevoTanque' %}>Nuevo Tanque</a>
+{% for tanque in tanques %}
+    <li>Tanque: {{tanque.id_tanque}}
+        <p>
+            <a href="{% url 'DetalleTanques' tanque.pk %}">Ver</a>
+            |
+            <a href="{% url 'EditarTanques' tanque.pk %}">Editar</a>
+            |
+            <a href="{% url 'BorrarTanques' tanque.pk %}">Borrar</a>
+
+
+        </p>
+    </li>
+
+
+{% endfor %}
+{% endblock body %}

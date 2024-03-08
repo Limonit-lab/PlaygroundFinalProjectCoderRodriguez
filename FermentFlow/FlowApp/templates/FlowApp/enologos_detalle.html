@@ -1,0 +1,15 @@
+{% extends "FlowApp/base.html" %}
+{% load static %}
+{% block body %}
+<h1>Enólogos Detalle</h1>
+
+<p>Nombre: <i>{{enologos.nombre}}</i></p>
+<p>Apellido: <i>{{enologos.apellido}}</i></p>
+<p>Email: <i>{{enologos.email}}</i></p>
+<p>Teléfono: <i>{{enologos.telefono}}</i></p>
+<p>Puesto: <i>{{enologos.puesto}}</i></p>
+<p>Tipo de Contrato: <i>{{enologos.tipo_contrato}}</i></p>
+<p>
+    <a href="{% url 'ListaEnologos' %}">Regresar</a>
+</p>
+{% endblock body %}

@@ -20,11 +20,11 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="#!">Start Bootstrap</a>
-                <a class="navbar-brand" href="{% url 'Tanques' %}">Tanques</a>
-                <a class="navbar-brand" href="{% url 'Clientes' %}">Clientes</a>
-                <a class="navbar-brand" href="{% url 'MostoVino' %}">Mosto_Vino</a>
-                <a class="navbar-brand" href="{% url 'Enologos' %}">Enologos</a>
+                <a class="navbar-brand" href="#!">Inicio</a>
+                <a class="navbar-brand" href="{% url 'ListaTanques' %}">Tanques</a>
+                <a class="navbar-brand" href="{% url 'ListaClientes' %}">Clientes</a>
+                <a class="navbar-brand" href="{% url 'ListaMostoVino' %}">MostoVino</a>
+                <a class="navbar-brand" href="{% url 'ListaEnologos' %}">Enologos</a>
                 <a class="navbar-brand" href="{% url 'ListaId_Tanques' %}">Id_Tanques</a>
                 {% if not request.user.is_authenticated %}
                     <a class="btn btn-primary" href="{% url 'Login' %}">Login</a>

@@ -1,0 +1,11 @@
+{% extends "FlowApp/base.html" %}
+{% load static %}
+{% block body %}
+<h1>Clientes Detalle</h1>
+
+<p>Cliente: <i>{{clientes.cliente}}</i></p>
+<p>Contacto: <i>{{clientes.contacto}}</i></p>
+<p>
+    <a href="{% url 'ListaClientes' %}">Regresar</a>
+</p>
+{% endblock body %}

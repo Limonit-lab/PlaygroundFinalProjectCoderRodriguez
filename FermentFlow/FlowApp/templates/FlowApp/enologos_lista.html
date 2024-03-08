@@ -1,0 +1,23 @@
+{% extends "FlowApp/base.html" %}
+{% load static %}
+{% block body %}
+<h1>Listado de Enologos</h1>
+
+
+<a href={% url 'NuevoEnologos' %}>Nuevo Enologo</a>
+{% for enologo in enologos %}
+    <li>Nombre: {{enologo.nombre}}
+        <p>
+            <a href="{% url 'DetalleEnologos' enologo.pk %}">Ver</a>
+            |
+            <a href="{% url 'EditarEnologos' enologo.pk %}">Editar</a>
+            |
+            <a href="{% url 'BorrarEnologos' enologo.pk %}">Borrar</a>
+
+
+        </p>
+    </li>
+
+
+{% endfor %}
+{% endblock body %}

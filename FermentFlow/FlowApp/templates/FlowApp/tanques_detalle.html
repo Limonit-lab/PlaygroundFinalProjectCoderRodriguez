@@ -1,0 +1,18 @@
+{% extends "FlowApp/base.html" %}
+{% load static %}
+{% block body %}
+<h1>Tanques Detalle</h1>
+
+<p>Tanque: <i>{{tanques.id_tanque}}</i></p>
+<p>Fecha: <i>{{tanques.fecha}}</i></p>
+<p>Variedad: <i>{{tanques.variedad}}</i></p>
+<p>t: <i>{{tanques.t}}</i></p>
+<p>Brix: <i>{{tanques.brix}}</i></p>
+<p>pH: <i>{{tanques.ph}}</i></p>
+<p>Cliente: <i>{{tanques.cliente}}</i></p>
+<p>Enologo: <i>{{tanques.enologo}}</i></p>
+<p>Observaciones: <i>{{tanques.observaciones}}</i></p>
+<p>
+    <a href="{% url 'ListaTanques' %}">Regresar</a>
+</p>
+{% endblock body %}
