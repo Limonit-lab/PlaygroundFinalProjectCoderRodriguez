@@ -2,6 +2,7 @@ from django.urls import path
 from FlowApp import views
 from django.contrib.auth.views import LogoutView
 
+
 urlpatterns = [
     path('', views.inicio, name="Inicio"),
     path('login', views.login_request, name="Login"),
@@ -41,3 +42,4 @@ urlpatterns = [
     path('enologos/<int:pk>/borrar', views.EnologosDeleteView.as_view(), name="BorrarEnologos"),
     
     ]
+
