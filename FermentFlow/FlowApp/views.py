@@ -42,6 +42,7 @@ def register(request):
             form = forms.Form_Registro()     
       return render(request,"FlowApp/register.html" ,  {"form":form})
   
+@login_required
 
 def editarPerfil(request):
     usuario = request.user
@@ -63,6 +64,8 @@ def editarPerfil(request):
 class CambiarClave(LoginRequiredMixin, PasswordChangeView):
     template_name = 'FlowApp/cambiarclave.html'
     success_url = reverse_lazy('EditarPerfil')
+
+@login_required
 
 def id_tanques(request):
     if request.method == 'POST':
