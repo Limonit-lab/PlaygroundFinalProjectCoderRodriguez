@@ -10,3 +10,16 @@
 
 {% endif %}
 {% endblock body %}
+
+{% block otroblock %}
+    {% if tanques %}
+    <p>Resultados para tanque: {{id_tanque}}</p>
+    <ul>
+    {% for tanque in tanques %}
+    <li>{{tanque.id_tanque}} | {{tanque.fecha}} | {{tanque.variedad}} | {{tanque.t}} | {{tanque.brix}} | {{tanque.ph}} | {{tanque.cliente}} | {{tanque.enologo}} | {{tanque.observaciones}} </li>
+    {% endfor %}
+    </ul>
+    {% else %}
+    <p>No hay datos para ese tanque</p>
+    {% endif %}
+{% endblock %}

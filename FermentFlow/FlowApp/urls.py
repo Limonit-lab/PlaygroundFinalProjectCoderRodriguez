@@ -40,6 +40,7 @@ urlpatterns = [
     path('enologos/<int:pk>', views.EnologosDetailView.as_view(), name="DetalleEnologos"),
     path('enologos/<int:pk>/editar', views.EnologosUpdateView.as_view(), name="EditarEnologos"),
     path('enologos/<int:pk>/borrar', views.EnologosDeleteView.as_view(), name="BorrarEnologos"),
+    path('buscar/', views.buscar, name='Buscar'),
     
     ]
 

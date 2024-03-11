@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -102,6 +103,8 @@ class Id_TanquesDeleteView(DeleteView):
     model = models.Id_Tanques    
     template_name = "FlowApp/id_tanques_borrar.html"
     success_url = reverse_lazy('ListaId_Tanques')                                         
+
+@login_required
 
 def tanques(request):
     if request.method == 'POST':
@@ -290,3 +293,15 @@ class EnologosDeleteView(DeleteView):
     model = models.Enologos    
     template_name = "FlowApp/enologos_borrar.html"
     success_url = reverse_lazy('ListaEnologos')
+
+
+def buscar(request):
+    if request.GET['id_tanque']:
+        id_tanque = request.GET['id_tanque']
+        tanques = models.Tanques.objects.filter(id_tanque__icontains=id_tanque)
+
+        return render(request, 'FlowApp/inicio.html', {'tanques': tanques, 'id_tanque': id_tanque})
+    else:
+        respuesta = 'No enviaste datos.'
+        
+    return render(request, 'FlowApp/inicio.html', {'respuesta': respuesta})
